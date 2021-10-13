@@ -1,0 +1,17 @@
+.idea/
+*.iml
+*.class
+
+## other
+
+out/
+.idea_modules/
+*.ipr
+*.iws
+
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*

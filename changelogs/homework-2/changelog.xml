@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<databaseChangeLog
+   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro 
+      https://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd"
+      logicalFilePath="homework-2">  
+    
+    <changeSet id="homework-2-events" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/01.create-events-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/02.create-users-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-events-users" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/03.create-events-users.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-roles" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/04.create-roles-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-events-roles" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/05.create-events-roles.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-events" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/06.create-users-events.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-role" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/07.create-users-role.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-chats" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/08.create-chats-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-add-events-chats-fk" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/09.add-events-chats-fk.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-chats-users" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/10.create-chats-users.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-messages" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/11.create-messages-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-chats-messages" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/12.create-chats-messages.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-chats" author="Name Surname">
+        <sqlFile encoding="utf8" path="./sql/13.create-users-chats.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog> 

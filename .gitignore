@@ -1,6 +1,8 @@
 .idea/
 *.iml
 *.class
+*.jar
+
 
 ## other
 
@@ -10,7 +12,6 @@ out/
 *.iws
 
 .mtj.tmp/
-*.jar
 *.war
 *.ear
 *.nar

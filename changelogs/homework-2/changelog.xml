@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>   
 <databaseChangeLog
    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
@@ -61,3 +62,78 @@
         <sqlFile encoding="utf8" path="./sql/13.create-users-chats.sql" relativeToChangelogFile="true"/>
     </changeSet>
 </databaseChangeLog> 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd"
+        logicalFilePath="homework-2">
+
+    <changeSet id="homework-2-chats" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/01.create-chats-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-events" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/02.create-events-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-chats-event-fk" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/03.add-chats-event-fk.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/04.create-users-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-messages" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/05.create-messages-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-roles" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/06.create-roles-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-chats" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/07.create-users-chats-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-users-events" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/08.create-users-events-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-chat-event-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/09.add-chat-event-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-event-chat-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/10.add-event-chat-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-messages-chat-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/11.add-messages-chat-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-messages-user-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/12.add-messages-user-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-roles-event-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/13.add-roles-event-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-roles-user-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/14.add-roles-user-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-chats-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/15.add-users-chats-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="homework-2-users-chats-index" author="Maksim Pavarha">
+        <sqlFile encoding="utf8" path="./sql/16.add-users-events-index.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>
+>>>>>>> Stashed changes

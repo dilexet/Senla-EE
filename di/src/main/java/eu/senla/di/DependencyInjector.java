@@ -4,7 +4,7 @@ import eu.senla.di.exceptions.InjectionException;
 
 public class DependencyInjector {
 
-    public static void run(Class<?> startClass, ApplicationContext applicationContext) throws IllegalAccessException {
+    public static void run(Class<?> startClass, ApplicationContext applicationContext) {
         try {
             ClassScanner classScanner = new ClassScanner();
             ObjectFactory factory = new ObjectFactory();

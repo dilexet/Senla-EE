@@ -28,10 +28,6 @@ public class ApplicationContext {
         this.objectFactory = factory;
     }
 
-    public ObjectFactory getObjectFactory() {
-        return objectFactory;
-    }
-
     public void createContext(Set<Class<?>> classes) throws IllegalAccessException {
         for (Class<?> clazz : classes) {
             if (!clazz.isAnnotationPresent(Component.class)) {
@@ -59,7 +55,6 @@ public class ApplicationContext {
             Object bean = objectFactory.createBean(clazz);
             context.put(clazz, bean);
             injectDependencies(clazz, bean);
-            System.out.println();
         }
     }
 
@@ -75,7 +70,7 @@ public class ApplicationContext {
                     field.setAccessible(true);
                     field.set(bean, someValue);
                 } catch (IOException e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("Error: " + e.getMessage());
                 }
                 continue;
             }
@@ -85,14 +80,11 @@ public class ApplicationContext {
             Object instance = this.getBean(field.getType());
             field.setAccessible(true);
             field.set(bean, instance);
-
-            System.out.println();
-
             injectDependencies(instance.getClass(), instance);
         }
     }
 
-    public <T> T getBean(Class<?> type) throws IllegalAccessException {
+    public <T> T getBean(Class<?> type) {
         Set<Map.Entry<Class<?>, Class<?>>> classSet = classInterfaceMap.entrySet().stream()
                 .filter(entry -> type.equals(entry.getValue()))
                 .collect(Collectors.toSet());

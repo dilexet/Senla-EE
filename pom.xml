@@ -14,7 +14,13 @@
         <module>main</module>
     </modules>
 
+    <properties>
+        <maven.compiler.sourse>14</maven.compiler.sourse>
+        <maven.compiler.target>14</maven.compiler.target>
+    </properties>
+
     <build>
+    <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

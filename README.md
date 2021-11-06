@@ -1,3 +1,2 @@
-# Senla-EE
+# Who is with me?
 ## Pavarha Maksim
-### Поварго Максим Валерьевич

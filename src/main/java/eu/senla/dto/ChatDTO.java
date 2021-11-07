@@ -18,14 +18,11 @@ public class ChatDTO {
     private String Name;
 
     @JsonProperty("users")
-    @JsonManagedReference
     private Set<UserDTO> Users;
 
     @JsonProperty("messages")
-    @JsonManagedReference
     private Set<MessageDTO> Messages;
 
     @JsonProperty("event")
-    @JsonManagedReference
     private EventEntity Event;
 }

@@ -1,13 +1,14 @@
 package eu.senla.abstraction.service;
 
 import eu.senla.dto.ChatDTO;
+import eu.senla.tools.Result;
 
 public interface ChatServiceInterface {
-    String create(ChatDTO chat);
+    Result create(ChatDTO chat);
 
-    String update(ChatDTO chat);
+    Result update(ChatDTO chat);
 
-    String remove(Long id);
+    Result remove(Long id);
 
     ChatDTO find_by_id(Long id);
 }

@@ -1,13 +1,14 @@
 package eu.senla.abstraction.service;
 
 import eu.senla.dto.MessageDTO;
+import eu.senla.tools.Result;
 
 public interface MessageServiceInterface {
-    String create(MessageDTO message);
+    Result create(MessageDTO message);
 
-    String update(MessageDTO message);
+    Result update(MessageDTO message);
 
-    String remove(Long id);
+    Result remove(Long id);
 
     MessageDTO find_by_id(Long id);
 }

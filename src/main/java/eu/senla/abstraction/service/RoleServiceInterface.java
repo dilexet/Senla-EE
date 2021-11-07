@@ -1,13 +1,14 @@
 package eu.senla.abstraction.service;
 
 import eu.senla.dto.RoleDTO;
+import eu.senla.tools.Result;
 
 public interface RoleServiceInterface {
-    String create(RoleDTO role);
+    Result create(RoleDTO role);
 
-    String update(RoleDTO role);
+    Result update(RoleDTO role);
 
-    String remove(Long id);
+    Result remove(Long id);
 
     RoleDTO find_by_id(Long id);
 }

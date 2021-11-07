@@ -1,13 +1,14 @@
 package eu.senla.abstraction.service;
 
 import eu.senla.dto.UserDTO;
+import eu.senla.tools.Result;
 
 public interface UserServiceInterface {
-    String create(UserDTO user);
+    Result create(UserDTO user);
 
-    String update(UserDTO user);
+    Result update(UserDTO user);
 
-    String remove(Long id);
+    Result remove(Long id);
 
     UserDTO find_by_id(Long id);
 }

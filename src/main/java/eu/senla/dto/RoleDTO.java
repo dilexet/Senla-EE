@@ -1,23 +1,16 @@
 package eu.senla.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import eu.senla.domain.EventEntity;
-import eu.senla.domain.UserEntity;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class RoleDTO {
-    @JsonProperty("id")
-    private Long Id;
 
-    @JsonProperty("name")
+    private Long Id;
     private String Name;
 
-    @JsonProperty("user")
-    private UserEntity User;
-
-    @JsonProperty("event")
-    private EventEntity Event;
+    private UserDTO User;
+    private EventDTO Event;
 }

@@ -2,34 +2,25 @@ package eu.senla.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class EventDTO {
-    @JsonProperty("id")
+
     private Long Id;
-
-    @JsonProperty("name")
     private String Name;
-
-    @JsonProperty("description")
     private String Description;
-
-    @JsonProperty("start_date")
     @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
+    @JsonProperty("start_date")
     private Date Start_Date;
 
-    @JsonProperty("roles")
     private Set<RoleDTO> Roles;
-
-    @JsonProperty("users")
     private Set<UserDTO> Users;
-
-    @JsonProperty("chat")
     private ChatDTO Chat;
 }

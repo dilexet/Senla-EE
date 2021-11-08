@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 public class MessageController {
     private final String MAPPING_TO_DTO_ERROR_MSG = "Error converting json to dto";
     private final String MAPPING_TO_JSON_ERROR_MSG = "Error converting dto to json";
+    private final String OBJECT_NOT_FOUND_ERROR_MSG = "This object does not exist";
 
     private final MessageServiceInterface messageService;
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
 
-    public MessageController(MessageServiceInterface messageService) {
+    public MessageController(MessageServiceInterface messageService, ObjectMapper mapper) {
         this.messageService = messageService;
+        this.mapper = mapper;
     }
 
     public String create(String json) {
@@ -48,7 +50,11 @@ public class MessageController {
 
     public String find_by_id(Long id) {
         MessageDTO messageDTO = messageService.find_by_id(id);
-        Response response = new Response(201, messageDTO);
+        if (messageDTO == null) {
+            Response response = new Response(400, OBJECT_NOT_FOUND_ERROR_MSG);
+            return mapToJson(response);
+        }
+        Response response = new Response(200, messageDTO);
         return mapToJson(response);
     }
 

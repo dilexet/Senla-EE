@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 public class RoleController {
     private final String MAPPING_TO_DTO_ERROR_MSG = "Error converting json to dto";
     private final String MAPPING_TO_JSON_ERROR_MSG = "Error converting dto to json";
+    private final String OBJECT_NOT_FOUND_ERROR_MSG = "This object does not exist";
 
     private final RoleServiceInterface roleService;
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
 
-    public RoleController(RoleServiceInterface roleService) {
+    public RoleController(RoleServiceInterface roleService, ObjectMapper mapper) {
         this.roleService = roleService;
+        this.mapper = mapper;
     }
 
     public String create(String json) {
@@ -48,7 +50,11 @@ public class RoleController {
 
     public String find_by_id(Long id) {
         RoleDTO roleDTO = roleService.find_by_id(id);
-        Response response = new Response(201, roleDTO);
+        if (roleDTO == null) {
+            Response response = new Response(400, OBJECT_NOT_FOUND_ERROR_MSG);
+            return mapToJson(response);
+        }
+        Response response = new Response(200, roleDTO);
         return mapToJson(response);
     }
 

@@ -2,29 +2,22 @@ package eu.senla.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import eu.senla.domain.ChatEntity;
-import eu.senla.domain.UserEntity;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class MessageDTO {
-    @JsonProperty("id")
+
     private Long Id;
-
-    @JsonProperty("text")
     private String text;
-
+    @JsonFormat(pattern = "dd.mm.yyyy HH:mm:ss")
     @JsonProperty("send_date")
-    @JsonFormat(pattern = "dd.mm.yyyy HH:mm")
     private Date Send_Date;
 
-    @JsonProperty("user")
-    private UserEntity User;
-
-    @JsonProperty("chat")
-    private ChatEntity Chat;
+    private UserDTO User;
+    private ChatDTO Chat;
 }

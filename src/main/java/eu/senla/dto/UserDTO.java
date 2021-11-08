@@ -1,26 +1,20 @@
 package eu.senla.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-@Getter
-@Setter
-public class UserDTO {
-    @JsonProperty("id")
-    private Long Id;
 
-    @JsonProperty("name")
+@Data
+@NoArgsConstructor
+public class UserDTO {
+
+    private Long Id;
     private String Name;
 
-    @JsonProperty("roles")
     private Set<RoleDTO> Roles;
-
-    @JsonProperty("events")
     private Set<EventDTO> Events;
-
-    @JsonProperty("chats")
     private Set<ChatDTO> Chats;
 }

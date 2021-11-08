@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 public class EventController {
     private final String MAPPING_TO_DTO_ERROR_MSG = "Error converting json to dto";
     private final String MAPPING_TO_JSON_ERROR_MSG = "Error converting dto to json";
+    private final String OBJECT_NOT_FOUND_ERROR_MSG = "This object does not exist";
 
     private final EventServiceInterface eventService;
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
 
-    public EventController(EventServiceInterface eventService) {
+    public EventController(EventServiceInterface eventService, ObjectMapper mapper) {
         this.eventService = eventService;
+        this.mapper = mapper;
     }
 
     public String create(String json) {
@@ -48,7 +50,11 @@ public class EventController {
 
     public String find_by_id(Long id) {
         EventDTO eventDTO = eventService.find_by_id(id);
-        Response response = new Response(201, eventDTO);
+        if (eventDTO == null) {
+            Response response = new Response(400, OBJECT_NOT_FOUND_ERROR_MSG);
+            return mapToJson(response);
+        }
+        Response response = new Response(200, eventDTO);
         return mapToJson(response);
     }
 

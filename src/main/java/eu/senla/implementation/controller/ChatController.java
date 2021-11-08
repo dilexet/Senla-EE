@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 public class ChatController {
     private final String MAPPING_TO_DTO_ERROR_MSG = "Error converting json to dto";
     private final String MAPPING_TO_JSON_ERROR_MSG = "Error converting dto to json";
+    private final String OBJECT_NOT_FOUND_ERROR_MSG = "This object does not exist";
 
     private final ChatServiceInterface chatService;
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
 
-    public ChatController(ChatServiceInterface chatService) {
+    public ChatController(ChatServiceInterface chatService, ObjectMapper mapper) {
         this.chatService = chatService;
+        this.mapper = mapper;
     }
 
     public String create(String json) {
@@ -51,7 +53,11 @@ public class ChatController {
 
     public String find_by_id(Long id) {
         ChatDTO chatDTO = chatService.find_by_id(id);
-        Response response = new Response(201, chatDTO);
+        if (chatDTO == null) {
+            Response response = new Response(400, OBJECT_NOT_FOUND_ERROR_MSG);
+            return mapToJson(response);
+        }
+        Response response = new Response(200, chatDTO);
         return mapToJson(response);
     }
 

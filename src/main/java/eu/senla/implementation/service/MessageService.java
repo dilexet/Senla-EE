@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageService implements MessageServiceInterface {
     private final MessageRepositoryInterface messageRepository;
+    private final String SERVICE_NAME = "message";
 
     public MessageService(MessageRepositoryInterface messageRepository) {
         this.messageRepository = messageRepository;
@@ -23,9 +24,9 @@ public class MessageService implements MessageServiceInterface {
         MessageEntity messageEntity = MessageMapper.INSTANCE.map(message);
         boolean result = messageRepository.add(messageEntity);
         if (!result) {
-            return new Result(StatusType.Error, ServiceError.CREATED_ERROR_MSG);
+            return new Result(StatusType.Error, String.format(ServiceError.CREATED_ERROR_MSG, SERVICE_NAME));
         }
-        return new Result(StatusType.Success, ServiceError.CREATED_SUCCESS_MSG);
+        return new Result(StatusType.Success, String.format(ServiceError.CREATED_SUCCESS_MSG, SERVICE_NAME));
     }
 
     @Override
@@ -33,18 +34,18 @@ public class MessageService implements MessageServiceInterface {
         MessageEntity messageEntity = MessageMapper.INSTANCE.map(message);
         boolean result = messageRepository.update(messageEntity);
         if (!result) {
-            return new Result(StatusType.Error, ServiceError.UPDATED_ERROR_MSG);
+            return new Result(StatusType.Error, String.format(ServiceError.UPDATED_ERROR_MSG, SERVICE_NAME));
         }
-        return new Result(StatusType.Success, ServiceError.UPDATED_SUCCESS_MSG);
+        return new Result(StatusType.Success, String.format(ServiceError.UPDATED_SUCCESS_MSG, SERVICE_NAME));
     }
 
     @Override
     public Result remove(Long id) {
         boolean result = messageRepository.remove(id);
         if (!result) {
-            return new Result(StatusType.Error, ServiceError.REMOVED_ERROR_MSG);
+            return new Result(StatusType.Error, String.format(ServiceError.REMOVED_ERROR_MSG, SERVICE_NAME));
         }
-        return new Result(StatusType.Success, ServiceError.REMOVED_SUCCESS_MSG);
+        return new Result(StatusType.Success, String.format(ServiceError.REMOVED_SUCCESS_MSG, SERVICE_NAME));
     }
 
     @Override

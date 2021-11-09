@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventService implements EventServiceInterface {
     private final EventRepositoryInterface eventRepository;
+    private final String SERVICE_NAME = "event";
 
     public EventService(EventRepositoryInterface eventRepository) {
         this.eventRepository = eventRepository;
@@ -23,9 +24,9 @@ public class EventService implements EventServiceInterface {
         EventEntity eventEntity = EventMapper.INSTANCE.map(event);
         boolean result = eventRepository.add(eventEntity);
         if (!result) {
-            return new Result(StatusType.Error, ServiceError.CREATED_ERROR_MSG);
+            return new Result(StatusType.Error, String.format(ServiceError.CREATED_ERROR_MSG, SERVICE_NAME));
         }
-        return new Result(StatusType.Success, ServiceError.CREATED_SUCCESS_MSG);
+        return new Result(StatusType.Success, String.format(ServiceError.CREATED_SUCCESS_MSG, SERVICE_NAME));
     }
 
     @Override
@@ -33,18 +34,18 @@ public class EventService implements EventServiceInterface {
         EventEntity eventEntity = EventMapper.INSTANCE.map(event);
         boolean result = eventRepository.update(eventEntity);
         if (!result) {
-            return new Result(StatusType.Error, ServiceError.UPDATED_ERROR_MSG);
+            return new Result(StatusType.Error, String.format(ServiceError.UPDATED_ERROR_MSG, SERVICE_NAME));
         }
-        return new Result(StatusType.Success, ServiceError.UPDATED_SUCCESS_MSG);
+        return new Result(StatusType.Success, String.format(ServiceError.UPDATED_SUCCESS_MSG, SERVICE_NAME));
     }
 
     @Override
     public Result remove(Long id) {
         boolean result = eventRepository.remove(id);
         if (!result) {
-            return new Result(StatusType.Error, ServiceError.REMOVED_ERROR_MSG);
+            return new Result(StatusType.Error, String.format(ServiceError.REMOVED_ERROR_MSG, SERVICE_NAME));
         }
-        return new Result(StatusType.Success, ServiceError.REMOVED_SUCCESS_MSG);
+        return new Result(StatusType.Success, String.format(ServiceError.REMOVED_SUCCESS_MSG, SERVICE_NAME));
     }
 
     @Override

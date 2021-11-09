@@ -10,5 +10,5 @@ public interface EventServiceInterface {
 
     Result remove(Long id);
 
-    EventDTO find_by_id(Long id);
+    EventDTO findById(Long id);
 }

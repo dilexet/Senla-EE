@@ -48,8 +48,8 @@ public class MessageController {
         return checkResult(result);
     }
 
-    public String find_by_id(Long id) {
-        MessageDTO messageDTO = messageService.find_by_id(id);
+    public String findById(Long id) {
+        MessageDTO messageDTO = messageService.findById(id);
         if (messageDTO == null) {
             Response response = new Response(400, OBJECT_NOT_FOUND_ERROR_MSG);
             return mapToJson(response);
@@ -81,11 +81,11 @@ public class MessageController {
     }
 
     private String checkResult(Result result) {
-        if (result.status() == StatusType.Error) {
-            Response response = new Response(400, result.message());
+        if (result.getStatus() == StatusType.Error) {
+            Response response = new Response(400, result.getMessage());
             return mapToJson(response);
         }
-        Response response = new Response(201, result.message());
+        Response response = new Response(201, result.getMessage());
         return mapToJson(response);
     }
 }

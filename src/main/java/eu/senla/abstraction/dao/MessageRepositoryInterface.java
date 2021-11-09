@@ -9,5 +9,5 @@ public interface MessageRepositoryInterface {
 
     boolean remove(Long id);
 
-    MessageEntity find_by_id(Long id);
+    MessageEntity findById(Long id);
 }

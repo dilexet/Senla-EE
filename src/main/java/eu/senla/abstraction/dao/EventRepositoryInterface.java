@@ -9,5 +9,5 @@ public interface EventRepositoryInterface {
 
     boolean remove(Long id);
 
-    EventEntity find_by_id(Long id);
+    EventEntity findById(Long id);
 }

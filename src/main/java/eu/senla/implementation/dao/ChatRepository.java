@@ -16,52 +16,41 @@ public class ChatRepository implements ChatRepositoryInterface {
 
     @Override
     public boolean add(ChatEntity chat) {
-        try {
-            chat.setId(getNewIndex());
-            chats.add(chat);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        chat.setId(getNewIndex());
+        chats.add(chat);
+
         return true;
     }
 
     @Override
     public boolean update(ChatEntity chat) {
-        ChatEntity existChat = find_by_id(chat.getId());
+        ChatEntity existChat = findById(chat.getId());
         if (existChat == null) {
             return false;
         }
-        try {
-            existChat.setName(chat.getName());
 
-            existChat.setMessages(chat.getMessages());
-            existChat.setEvent(chat.getEvent());
-            existChat.setUsers(chat.getUsers());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        existChat.setName(chat.getName());
+        existChat.setMessages(chat.getMessages());
+        existChat.setEvent(chat.getEvent());
+        existChat.setUsers(chat.getUsers());
+
         return true;
     }
 
     @Override
     public boolean remove(Long id) {
-        ChatEntity chat = find_by_id(id);
+        ChatEntity chat = findById(id);
         if (chat == null) {
             return false;
         }
-        try {
-            chats.remove(chat);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+
+        chats.remove(chat);
+
         return true;
     }
 
     @Override
-    public ChatEntity find_by_id(Long id) {
+    public ChatEntity findById(Long id) {
         return chats.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 

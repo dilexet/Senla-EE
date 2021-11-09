@@ -3,6 +3,7 @@ package eu.senla.implementation.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.senla.abstraction.service.RoleServiceInterface;
+import eu.senla.constants.MappingError;
 import eu.senla.dto.RoleDTO;
 import eu.senla.tools.Response;
 import eu.senla.tools.Result;
@@ -11,10 +12,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class RoleController {
-    private final String MAPPING_TO_DTO_ERROR_MSG = "Error converting json to dto";
-    private final String MAPPING_TO_JSON_ERROR_MSG = "Error converting dto to json";
-    private final String OBJECT_NOT_FOUND_ERROR_MSG = "This object does not exist";
-
     private final RoleServiceInterface roleService;
     private final ObjectMapper mapper;
 
@@ -26,7 +23,7 @@ public class RoleController {
     public String create(String json) {
         RoleDTO role = mapping(json);
         if (role == null) {
-            Response response = new Response(400, MAPPING_TO_DTO_ERROR_MSG);
+            Response response = new Response(400, MappingError.MAPPING_TO_DTO_ERROR_MSG);
             return mapToJson(response);
         }
         var result = roleService.create(role);
@@ -36,7 +33,7 @@ public class RoleController {
     public String update(String json) {
         RoleDTO role = mapping(json);
         if (role == null) {
-            Response response = new Response(400, MAPPING_TO_DTO_ERROR_MSG);
+            Response response = new Response(400, MappingError.MAPPING_TO_DTO_ERROR_MSG);
             return mapToJson(response);
         }
         var result = roleService.update(role);
@@ -48,10 +45,10 @@ public class RoleController {
         return checkResult(result);
     }
 
-    public String find_by_id(Long id) {
-        RoleDTO roleDTO = roleService.find_by_id(id);
+    public String findById(Long id) {
+        RoleDTO roleDTO = roleService.findById(id);
         if (roleDTO == null) {
-            Response response = new Response(400, OBJECT_NOT_FOUND_ERROR_MSG);
+            Response response = new Response(400, MappingError.OBJECT_NOT_FOUND_ERROR_MSG);
             return mapToJson(response);
         }
         Response response = new Response(200, roleDTO);
@@ -75,17 +72,17 @@ public class RoleController {
             json = mapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
-            return MAPPING_TO_JSON_ERROR_MSG;
+            return MappingError.MAPPING_TO_JSON_ERROR_MSG;
         }
         return json;
     }
 
     private String checkResult(Result result) {
-        if (result.status() == StatusType.Error) {
-            Response response = new Response(400, result.message());
+        if (result.getStatus() == StatusType.Error) {
+            Response response = new Response(400, result.getMessage());
             return mapToJson(response);
         }
-        Response response = new Response(201, result.message());
+        Response response = new Response(201, result.getMessage());
         return mapToJson(response);
     }
 }

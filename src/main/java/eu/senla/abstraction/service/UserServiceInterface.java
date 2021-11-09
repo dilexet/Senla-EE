@@ -10,5 +10,5 @@ public interface UserServiceInterface {
 
     Result remove(Long id);
 
-    UserDTO find_by_id(Long id);
+    UserDTO findById(Long id);
 }

@@ -1,4 +1,16 @@
 package eu.senla.tools;
 
-public record Response(int code, Object data) {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Response {
+    private int code;
+    private Object object;
+
+    public Response(int code, Object object) {
+        this.code = code;
+        this.object = object;
+    }
 }

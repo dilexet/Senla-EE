@@ -9,11 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 public class Application {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+
         ChatController chatController = context.getBean(ChatController.class);
-        EventController eventController = context.getBean(EventController.class);
-        MessageController messageController = context.getBean(MessageController.class);
-        RoleController roleController = context.getBean(RoleController.class);
-        UserController userController = context.getBean(UserController.class);
 
         String chat1 = """
                 {
@@ -44,6 +41,15 @@ public class Application {
                          "users" : null
                       }
                 """;
+
+        System.out.println(chatController.create(chat1));
+        System.out.println(chatController.create(chat2));
+        System.out.println(chatController.remove(1L));
+        System.out.println(chatController.findById(2L));
+        System.out.println(chatController.update(chat3));
+        System.out.println(chatController.findById(2L));
+
+        EventController eventController = context.getBean(EventController.class);
 
         String event1 = """
                 {
@@ -81,6 +87,15 @@ public class Application {
                 }
                 """;
 
+        System.out.println(eventController.create(event1));
+        System.out.println(eventController.create(event2));
+        System.out.println(eventController.remove(1L));
+        System.out.println(eventController.findById(2L));
+        System.out.println(eventController.update(event3));
+        System.out.println(eventController.findById(2L));
+
+        MessageController messageController = context.getBean(MessageController.class);
+
         String message1 = """
                 {
                    "text" : "Some message text 1",
@@ -111,6 +126,15 @@ public class Application {
                 }
                 """;
 
+        System.out.println(messageController.create(message1));
+        System.out.println(messageController.create(message2));
+        System.out.println(messageController.remove(1L));
+        System.out.println(messageController.findById(2L));
+        System.out.println(messageController.update(message3));
+        System.out.println(messageController.findById(2L));
+
+        RoleController roleController = context.getBean(RoleController.class);
+
         String role1 = """
                 {
                    "name" : "Some role name 1",
@@ -137,6 +161,15 @@ public class Application {
                        "user" : null
                 }
                 """;
+
+        System.out.println(roleController.create(role1));
+        System.out.println(roleController.create(role2));
+        System.out.println(roleController.remove(1L));
+        System.out.println(roleController.findById(2L));
+        System.out.println(roleController.update(role3));
+        System.out.println(roleController.findById(2L));
+
+        UserController userController = context.getBean(UserController.class);
 
         String user1 = """
                 {
@@ -168,42 +201,12 @@ public class Application {
                 }
                 """;
 
-
-        System.out.println(chatController.create(chat1));
-        System.out.println(chatController.create(chat2));
-        System.out.println(chatController.remove(1L));
-        System.out.println(chatController.find_by_id(2L));
-        System.out.println(chatController.update(chat3));
-        System.out.println(chatController.find_by_id(2L));
-
-
-        System.out.println(eventController.create(event1));
-        System.out.println(eventController.create(event2));
-        System.out.println(eventController.remove(1L));
-        System.out.println(eventController.find_by_id(2L));
-        System.out.println(eventController.update(event3));
-        System.out.println(eventController.find_by_id(2L));
-
-        System.out.println(messageController.create(message1));
-        System.out.println(messageController.create(message2));
-        System.out.println(messageController.remove(1L));
-        System.out.println(messageController.find_by_id(2L));
-        System.out.println(messageController.update(message3));
-        System.out.println(messageController.find_by_id(2L));
-
-        System.out.println(roleController.create(role1));
-        System.out.println(roleController.create(role2));
-        System.out.println(roleController.remove(1L));
-        System.out.println(roleController.find_by_id(2L));
-        System.out.println(roleController.update(role3));
-        System.out.println(roleController.find_by_id(2L));
-
         System.out.println(userController.create(user1));
         System.out.println(userController.create(user2));
         System.out.println(userController.remove(1L));
-        System.out.println(userController.find_by_id(2L));
+        System.out.println(userController.findById(2L));
         System.out.println(userController.update(user3));
-        System.out.println(userController.find_by_id(2L));
+        System.out.println(userController.findById(2L));
 
     }
 }

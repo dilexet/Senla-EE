@@ -9,5 +9,5 @@ public interface ChatRepositoryInterface {
 
     boolean remove(Long id);
 
-    ChatEntity find_by_id(Long id);
+    ChatEntity findById(Long id);
 }

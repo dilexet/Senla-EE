@@ -9,5 +9,5 @@ public interface RoleRepositoryInterface {
 
     boolean remove(Long id);
 
-    RoleEntity find_by_id(Long id);
+    RoleEntity findById(Long id);
 }

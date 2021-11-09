@@ -15,54 +15,43 @@ public class EventRepository implements EventRepositoryInterface {
 
     @Override
     public boolean add(EventEntity event) {
-        try {
-            event.setId(getNewIndex());
-            events.add(event);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        event.setId(getNewIndex());
+        events.add(event);
         return true;
     }
 
     @Override
     public boolean update(EventEntity event) {
-        EventEntity existEvent = find_by_id(event.getId());
+        EventEntity existEvent = findById(event.getId());
         if (existEvent == null) {
             return false;
         }
-        try {
-            existEvent.setName(event.getName());
-            existEvent.setDescription(event.getDescription());
-            existEvent.setStart_Date(event.getStart_Date());
 
-            existEvent.setRoles(event.getRoles());
-            existEvent.setUsers(event.getUsers());
-            existEvent.setChat(event.getChat());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        existEvent.setName(event.getName());
+        existEvent.setDescription(event.getDescription());
+        existEvent.setStartDate(event.getStartDate());
+
+        existEvent.setRoles(event.getRoles());
+        existEvent.setUsers(event.getUsers());
+        existEvent.setChat(event.getChat());
+
         return true;
     }
 
     @Override
     public boolean remove(Long id) {
-        EventEntity event = find_by_id(id);
+        EventEntity event = findById(id);
         if (event == null) {
             return false;
         }
-        try {
-            events.remove(event);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+
+        events.remove(event);
+
         return true;
     }
 
     @Override
-    public EventEntity find_by_id(Long id) {
+    public EventEntity findById(Long id) {
         return events.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 

@@ -15,51 +15,36 @@ public class RoleRepository implements RoleRepositoryInterface {
 
     @Override
     public boolean add(RoleEntity role) {
-        try {
-            role.setId(getNewIndex());
-            roles.add(role);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        role.setId(getNewIndex());
+        roles.add(role);
         return true;
     }
 
     @Override
     public boolean update(RoleEntity role) {
-        RoleEntity existRole = find_by_id(role.getId());
+        RoleEntity existRole = findById(role.getId());
         if (existRole == null) {
             return false;
         }
-        try {
-            existRole.setName(role.getName());
+        existRole.setName(role.getName());
 
-            existRole.setUser(role.getUser());
-            existRole.setEvent(role.getEvent());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        existRole.setUser(role.getUser());
+        existRole.setEvent(role.getEvent());
         return true;
     }
 
     @Override
     public boolean remove(Long id) {
-        RoleEntity role = find_by_id(id);
+        RoleEntity role = findById(id);
         if (role == null) {
             return false;
         }
-        try {
-            roles.remove(role);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        roles.remove(role);
         return true;
     }
 
     @Override
-    public RoleEntity find_by_id(Long id) {
+    public RoleEntity findById(Long id) {
         return roles.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 

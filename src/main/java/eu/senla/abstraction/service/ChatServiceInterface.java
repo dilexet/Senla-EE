@@ -10,5 +10,5 @@ public interface ChatServiceInterface {
 
     Result remove(Long id);
 
-    ChatDTO find_by_id(Long id);
+    ChatDTO findById(Long id);
 }

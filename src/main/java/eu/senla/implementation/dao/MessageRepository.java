@@ -15,52 +15,43 @@ public class MessageRepository implements MessageRepositoryInterface {
 
     @Override
     public boolean add(MessageEntity message) {
-        try {
-            message.setId(getNewIndex());
-            messages.add(message);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+
+        message.setId(getNewIndex());
+        messages.add(message);
+
         return true;
     }
 
     @Override
     public boolean update(MessageEntity message) {
-        MessageEntity existMessage = find_by_id(message.getId());
+        MessageEntity existMessage = findById(message.getId());
         if (existMessage == null) {
             return false;
         }
-        try {
-            existMessage.setText(message.getText());
-            existMessage.setSend_Date(message.getSend_Date());
 
-            existMessage.setUser(message.getUser());
-            existMessage.setChat(message.getChat());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        existMessage.setText(message.getText());
+        existMessage.setSendDate(message.getSendDate());
+
+        existMessage.setUser(message.getUser());
+        existMessage.setChat(message.getChat());
+
         return true;
     }
 
     @Override
     public boolean remove(Long id) {
-        MessageEntity message = find_by_id(id);
+        MessageEntity message = findById(id);
         if (message == null) {
             return false;
         }
-        try {
-            messages.remove(message);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+
+        messages.remove(message);
+
         return true;
     }
 
     @Override
-    public MessageEntity find_by_id(Long id) {
+    public MessageEntity findById(Long id) {
         return messages.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 

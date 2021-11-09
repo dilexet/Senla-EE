@@ -15,52 +15,37 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public boolean add(UserEntity user) {
-        try {
-            user.setId(getNewIndex());
-            users.add(user);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        user.setId(getNewIndex());
+        users.add(user);
         return true;
     }
 
     @Override
     public boolean update(UserEntity user) {
-        UserEntity existUser = find_by_id(user.getId());
+        UserEntity existUser = findById(user.getId());
         if (existUser == null) {
             return false;
         }
-        try {
-            existUser.setName(user.getName());
+        existUser.setName(user.getName());
 
-            existUser.setRoles(user.getRoles());
-            existUser.setEvents(user.getEvents());
-            existUser.setChats(user.getChats());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        existUser.setRoles(user.getRoles());
+        existUser.setEvents(user.getEvents());
+        existUser.setChats(user.getChats());
         return true;
     }
 
     @Override
     public boolean remove(Long id) {
-        UserEntity user = find_by_id(id);
+        UserEntity user = findById(id);
         if (user == null) {
             return false;
         }
-        try {
-            users.remove(user);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        users.remove(user);
         return true;
     }
 
     @Override
-    public UserEntity find_by_id(Long id) {
+    public UserEntity findById(Long id) {
         return users.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 

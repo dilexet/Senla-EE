@@ -10,5 +10,5 @@ public interface RoleServiceInterface {
 
     Result remove(Long id);
 
-    RoleDTO find_by_id(Long id);
+    RoleDTO findById(Long id);
 }

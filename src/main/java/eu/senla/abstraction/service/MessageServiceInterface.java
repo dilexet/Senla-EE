@@ -10,5 +10,5 @@ public interface MessageServiceInterface {
 
     Result remove(Long id);
 
-    MessageDTO find_by_id(Long id);
+    MessageDTO findById(Long id);
 }

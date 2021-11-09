@@ -1,6 +1,5 @@
 package eu.senla.dto;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,10 +10,30 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserDTO {
 
-    private Long Id;
-    private String Name;
+    private Long id;
+    private String name;
 
-    private Set<RoleDTO> Roles;
-    private Set<EventDTO> Events;
-    private Set<ChatDTO> Chats;
+    private Set<RoleDTO> roles;
+    private Set<EventDTO> events;
+    private Set<ChatDTO> chats;
+
+    @Override
+    public int hashCode() {
+        final long prime = 31L;
+        long result = 1L;
+        result = prime * result + this.getId();
+        return (int) result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        if (this == obj)
+            return true;
+        UserDTO dto = (UserDTO) obj;
+        return this.getId().equals(dto.getId());
+    }
 }

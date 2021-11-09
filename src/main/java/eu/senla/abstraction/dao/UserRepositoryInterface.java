@@ -9,5 +9,5 @@ public interface UserRepositoryInterface {
 
     boolean remove(Long id);
 
-    UserEntity find_by_id(Long id);
+    UserEntity findById(Long id);
 }

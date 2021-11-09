@@ -1,6 +1,7 @@
 .idea/
 *.iml
 *.class
+/target
 
 ## other
 
@@ -8,7 +9,6 @@ out/
 .idea_modules/
 *.ipr
 *.iws
-target/
 
 .mtj.tmp/
 *.jar

@@ -13,7 +13,8 @@ public class MessageDTO {
 
     private Long id;
     private String text;
-    @JsonFormat(pattern = "dd.mm.yyyy HH:mm:ss")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss", timezone = "GMT+3")
     @JsonProperty("send_date")
     private Date sendDate;
 

@@ -8,6 +8,14 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 public class Application {
     public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+
+        mainTest();
+
+        context.registerShutdownHook();
+    }
+
+    private static void mainTest() {
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
 
         ChatController chatController = context.getBean(ChatController.class);
@@ -102,7 +110,7 @@ public class Application {
                        "id" : null,
                        "user" : null,
                        "chat" : null,
-                       "send_date" : "08.13.2021 12:13:54"
+                       "send_date" : "2021-11-15 16:13:54"
                 }
                 """;
 
@@ -112,7 +120,7 @@ public class Application {
                        "id" : null,
                        "user" : null,
                        "chat" : null,
-                       "send_date" : "08.13.2021 12:14:54"
+                       "send_date" : "2021-11-15 12:13:54"
                 }
                 """;
 
@@ -122,7 +130,7 @@ public class Application {
                        "id" : 2,
                        "user" : null,
                        "chat" : null,
-                       "send_date" : "08.13.2021 12:15:54"
+                       "send_date" : "2021-11-15 13:13:54"
                 }
                 """;
 
@@ -207,6 +215,5 @@ public class Application {
         System.out.println(userController.findById(2L));
         System.out.println(userController.update(user3));
         System.out.println(userController.findById(2L));
-
     }
 }

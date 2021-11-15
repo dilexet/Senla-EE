@@ -5,11 +5,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 @Configuration
 public class MapConfig {
     @Bean
     public ObjectMapper mapper() {
         ObjectMapper mapper = new ObjectMapper();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        mapper.setDateFormat(dateFormat);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         return mapper;

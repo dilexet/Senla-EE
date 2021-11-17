@@ -2,10 +2,14 @@ package eu.senla.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -15,9 +19,12 @@ public class EventDTO {
     private Long id;
     private String name;
     private String description;
+
     @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonProperty("start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     private Set<RoleDTO> roles;
     private Set<UserDTO> users;

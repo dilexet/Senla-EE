@@ -1,15 +1,61 @@
 package eu.senla;
 
 import eu.senla.implementation.controller.*;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan
 public class Application {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
 
+        messageTest(context);
+
+        context.registerShutdownHook();
+    }
+
+    private static void messageTest(AnnotationConfigApplicationContext context) {
+        MessageController messageController = context.getBean(MessageController.class);
+
+        String message1 = """
+                {
+                   "text" : "Some message text 1",
+                       "id" : null,
+                       "user" : null,
+                       "chat" : null,
+                       "send_date" : "2021-11-15 10:13:54"
+                }
+                """;
+
+        String message2 = """
+                {
+                   "text" : "Some message text 2",
+                       "id" : null,
+                       "user" : null,
+                       "chat" : null,
+                       "send_date" : "2021-11-15 11:13:54"
+                }
+                """;
+
+        String message3 = """
+                {
+                   "text" : "Some message text 3",
+                       "id" : 2,
+                       "user" : null,
+                       "chat" : null,
+                       "send_date" : "2021-11-15 12:13:54"
+                }
+                """;
+
+        System.out.println(messageController.create(message1));
+        System.out.println(messageController.create(message2));
+        System.out.println(messageController.remove(1L));
+        System.out.println(messageController.findById(2L));
+        System.out.println(messageController.update(message3));
+        System.out.println(messageController.findById(2L));
+    }
+
+    private static void mainTest(AnnotationConfigApplicationContext context) {
         ChatController chatController = context.getBean(ChatController.class);
 
         String chat1 = """
@@ -102,7 +148,7 @@ public class Application {
                        "id" : null,
                        "user" : null,
                        "chat" : null,
-                       "send_date" : "08.13.2021 12:13:54"
+                       "send_date" : "2021-11-15 16:13:54"
                 }
                 """;
 
@@ -112,7 +158,7 @@ public class Application {
                        "id" : null,
                        "user" : null,
                        "chat" : null,
-                       "send_date" : "08.13.2021 12:14:54"
+                       "send_date" : "2021-11-15 12:13:54"
                 }
                 """;
 
@@ -122,7 +168,7 @@ public class Application {
                        "id" : 2,
                        "user" : null,
                        "chat" : null,
-                       "send_date" : "08.13.2021 12:15:54"
+                       "send_date" : "2021-11-15 13:13:54"
                 }
                 """;
 
@@ -207,6 +253,5 @@ public class Application {
         System.out.println(userController.findById(2L));
         System.out.println(userController.update(user3));
         System.out.println(userController.findById(2L));
-
     }
 }

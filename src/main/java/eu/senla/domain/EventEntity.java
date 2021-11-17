@@ -3,7 +3,7 @@ package eu.senla.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -12,7 +12,7 @@ public class EventEntity {
     private Long id;
     private String name;
     private String description;
-    private Date startDate;
+    private LocalDate startDate;
 
     private Set<RoleEntity> roles;
     private Set<UserEntity> users;

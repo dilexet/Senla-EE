@@ -3,14 +3,15 @@ package eu.senla.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 public class MessageEntity {
     private Long id;
     private String text;
-    private Date sendDate;
+
+    private LocalDate sendDate;
 
     private UserEntity user;
     private ChatEntity chat;

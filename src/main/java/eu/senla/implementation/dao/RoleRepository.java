@@ -1,7 +1,7 @@
 package eu.senla.implementation.dao;
 
-import eu.senla.abstraction.dao.RoleRepositoryInterface;
-import eu.senla.domain.RoleEntity;
+import eu.senla.interfaces.dao.RoleRepositoryInterface;
+import eu.senla.domain.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,18 +11,18 @@ import java.util.Objects;
 
 @Repository
 public class RoleRepository implements RoleRepositoryInterface {
-    private final List<RoleEntity> roles = new ArrayList<>();
+    private final List<Role> roles = new ArrayList<>();
 
     @Override
-    public boolean add(RoleEntity role) {
+    public boolean add(Role role) {
         role.setId(getNewIndex());
         roles.add(role);
         return true;
     }
 
     @Override
-    public boolean update(RoleEntity role) {
-        RoleEntity existRole = findById(role.getId());
+    public boolean update(Role role) {
+        Role existRole = findById(role.getId());
         if (existRole == null) {
             return false;
         }
@@ -35,7 +35,7 @@ public class RoleRepository implements RoleRepositoryInterface {
 
     @Override
     public boolean remove(Long id) {
-        RoleEntity role = findById(id);
+        Role role = findById(id);
         if (role == null) {
             return false;
         }
@@ -44,12 +44,12 @@ public class RoleRepository implements RoleRepositoryInterface {
     }
 
     @Override
-    public RoleEntity findById(Long id) {
+    public Role findById(Long id) {
         return roles.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 
     private Long getNewIndex() {
-        RoleEntity role = roles.stream().max(Comparator.comparing(RoleEntity::getId)).orElse(null);
+        Role role = roles.stream().max(Comparator.comparing(Role::getId)).orElse(null);
         return role == null ? 1 : role.getId() + 1;
     }
 }

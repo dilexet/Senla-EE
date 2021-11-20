@@ -1,16 +1,18 @@
 package eu.senla.implementation.service;
 
-import eu.senla.abstraction.dao.UserRepositoryInterface;
-import eu.senla.abstraction.service.UserServiceInterface;
+import eu.senla.interfaces.dao.UserRepositoryInterface;
+import eu.senla.interfaces.service.UserServiceInterface;
 import eu.senla.constants.ServiceError;
-import eu.senla.domain.UserEntity;
+import eu.senla.domain.User;
 import eu.senla.dto.UserDTO;
 import eu.senla.mapper.UserMapper;
 import eu.senla.tools.Result;
 import eu.senla.tools.StatusType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserService implements UserServiceInterface {
     private final UserRepositoryInterface userRepository;
     private final String SERVICE_NAME = "user";
@@ -21,7 +23,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public Result create(UserDTO user) {
-        UserEntity userEntity = UserMapper.INSTANCE.map(user);
+        User userEntity = UserMapper.INSTANCE.map(user);
         boolean result = userRepository.add(userEntity);
         if (!result) {
             return new Result(StatusType.Error, String.format(ServiceError.CREATED_ERROR_MSG, SERVICE_NAME));
@@ -31,7 +33,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public Result update(UserDTO user) {
-        UserEntity userEntity = UserMapper.INSTANCE.map(user);
+        User userEntity = UserMapper.INSTANCE.map(user);
         boolean result = userRepository.update(userEntity);
         if (!result) {
             return new Result(StatusType.Error, String.format(ServiceError.UPDATED_ERROR_MSG, SERVICE_NAME));
@@ -50,10 +52,10 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public UserDTO findById(Long id) {
-        UserEntity userEntity = userRepository.findById(id);
-        if (userEntity == null) {
+        User user = userRepository.findById(id);
+        if (user == null) {
             return null;
         }
-        return UserMapper.INSTANCE.map(userEntity);
+        return UserMapper.INSTANCE.map(user);
     }
 }

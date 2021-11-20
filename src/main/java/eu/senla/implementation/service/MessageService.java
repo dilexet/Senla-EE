@@ -1,17 +1,18 @@
 package eu.senla.implementation.service;
 
-import eu.senla.abstraction.dao.MessageRepositoryInterface;
-import eu.senla.abstraction.service.MessageServiceInterface;
-import eu.senla.annotation.Transaction;
+import eu.senla.interfaces.dao.MessageRepositoryInterface;
+import eu.senla.interfaces.service.MessageServiceInterface;
 import eu.senla.constants.ServiceError;
-import eu.senla.domain.MessageEntity;
+import eu.senla.domain.Message;
 import eu.senla.dto.MessageDTO;
 import eu.senla.mapper.MessageMapper;
 import eu.senla.tools.Result;
 import eu.senla.tools.StatusType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class MessageService implements MessageServiceInterface {
     private final MessageRepositoryInterface messageRepository;
     private final String SERVICE_NAME = "message";
@@ -21,9 +22,8 @@ public class MessageService implements MessageServiceInterface {
     }
 
     @Override
-    @Transaction
     public Result create(MessageDTO message) {
-        MessageEntity messageEntity = MessageMapper.INSTANCE.map(message);
+        Message messageEntity = MessageMapper.INSTANCE.map(message);
         boolean result = messageRepository.add(messageEntity);
         if (!result) {
             return new Result(StatusType.Error, String.format(ServiceError.CREATED_ERROR_MSG, SERVICE_NAME));
@@ -32,9 +32,8 @@ public class MessageService implements MessageServiceInterface {
     }
 
     @Override
-    @Transaction
     public Result update(MessageDTO message) {
-        MessageEntity messageEntity = MessageMapper.INSTANCE.map(message);
+        Message messageEntity = MessageMapper.INSTANCE.map(message);
         boolean result = messageRepository.update(messageEntity);
         if (!result) {
             return new Result(StatusType.Error, String.format(ServiceError.UPDATED_ERROR_MSG, SERVICE_NAME));
@@ -43,7 +42,6 @@ public class MessageService implements MessageServiceInterface {
     }
 
     @Override
-    @Transaction
     public Result remove(Long id) {
         boolean result = messageRepository.remove(id);
         if (!result) {
@@ -53,12 +51,11 @@ public class MessageService implements MessageServiceInterface {
     }
 
     @Override
-    @Transaction
     public MessageDTO findById(Long id) {
-        MessageEntity messageEntity = messageRepository.findById(id);
-        if (messageEntity == null) {
+        Message message = messageRepository.findById(id);
+        if (message == null) {
             return null;
         }
-        return MessageMapper.INSTANCE.map(messageEntity);
+        return MessageMapper.INSTANCE.map(message);
     }
 }

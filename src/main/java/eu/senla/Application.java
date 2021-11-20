@@ -4,12 +4,20 @@ import eu.senla.implementation.controller.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+/* TODO:
+ * 7) Реализовать AbstractDao с CRUD методами
+ * 8) Дополнить несколько репозиториев запросами на Criteria API
+ *  и JPQL (например, поиск сущностей по каким-то параметрам).
+ * Тут же добавить генерацию метамодели для написания запросов на Criteria API.
+ * 10) Реализовать в репозиториях методы, которые будут одним запросом вытягивать
+ * основную сущность с ленивыми ассоциациями используя fetch в Criteria API, fetch в JPQL
+ * и EntityGraph. (см. https://thorben-janssen.com/5-ways-to-initialize-lazy-relations-and-when-to-use-them/)
+ * 11) Написать тесты на слой репозиториев с использованием H2
+ */
 @ComponentScan
 public class Application {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-
-        messageTest(context);
 
         context.registerShutdownHook();
     }

@@ -2,7 +2,7 @@ package eu.senla.implementation.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.senla.abstraction.service.RoleServiceInterface;
+import eu.senla.interfaces.service.RoleServiceInterface;
 import eu.senla.constants.MappingError;
 import eu.senla.dto.RoleDTO;
 import eu.senla.tools.Response;

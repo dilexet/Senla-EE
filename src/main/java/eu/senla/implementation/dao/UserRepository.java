@@ -1,7 +1,7 @@
 package eu.senla.implementation.dao;
 
-import eu.senla.abstraction.dao.UserRepositoryInterface;
-import eu.senla.domain.UserEntity;
+import eu.senla.interfaces.dao.UserRepositoryInterface;
+import eu.senla.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,18 +11,18 @@ import java.util.Objects;
 
 @Repository
 public class UserRepository implements UserRepositoryInterface {
-    private final List<UserEntity> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     @Override
-    public boolean add(UserEntity user) {
+    public boolean add(User user) {
         user.setId(getNewIndex());
         users.add(user);
         return true;
     }
 
     @Override
-    public boolean update(UserEntity user) {
-        UserEntity existUser = findById(user.getId());
+    public boolean update(User user) {
+        User existUser = findById(user.getId());
         if (existUser == null) {
             return false;
         }
@@ -36,7 +36,7 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public boolean remove(Long id) {
-        UserEntity user = findById(id);
+        User user = findById(id);
         if (user == null) {
             return false;
         }
@@ -45,12 +45,12 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     @Override
-    public UserEntity findById(Long id) {
+    public User findById(Long id) {
         return users.stream().filter(x -> Objects.equals(x.getId(), id)).findFirst().orElse(null);
     }
 
     private Long getNewIndex() {
-        UserEntity user = users.stream().max(Comparator.comparing(UserEntity::getId)).orElse(null);
+        User user = users.stream().max(Comparator.comparing(User::getId)).orElse(null);
         return user == null ? 1 : user.getId() + 1;
     }
 }

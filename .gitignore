@@ -9,6 +9,7 @@ out/
 .idea_modules/
 *.ipr
 *.iws
+.jpb
 
 .mtj.tmp/
 *.jar

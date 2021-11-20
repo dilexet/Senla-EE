@@ -2,7 +2,7 @@ package eu.senla.implementation.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.senla.abstraction.service.MessageServiceInterface;
+import eu.senla.interfaces.service.MessageServiceInterface;
 import eu.senla.dto.MessageDTO;
 import eu.senla.tools.Response;
 import eu.senla.tools.Result;

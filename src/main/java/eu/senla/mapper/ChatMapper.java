@@ -1,6 +1,6 @@
 package eu.senla.mapper;
 
-import eu.senla.domain.ChatEntity;
+import eu.senla.domain.Chat;
 import eu.senla.dto.ChatDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface ChatMapper {
     ChatMapper INSTANCE = Mappers.getMapper(ChatMapper.class);
 
-    ChatDTO map(ChatEntity chat);
-    ChatEntity map(ChatDTO chat);
+    ChatDTO map(Chat chat);
+    Chat map(ChatDTO chat);
 }

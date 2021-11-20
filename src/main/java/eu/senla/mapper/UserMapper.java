@@ -1,6 +1,6 @@
 package eu.senla.mapper;
 
-import eu.senla.domain.UserEntity;
+import eu.senla.domain.User;
 import eu.senla.dto.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    UserDTO map(UserEntity user);
-    UserEntity map(UserDTO user);
+    UserDTO map(User user);
+    User map(UserDTO user);
 }
